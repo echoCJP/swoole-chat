@@ -2,6 +2,7 @@
 
 class Chat
 {
+	public static $instance;
 	public $server;
 	public $file = __DIR__ . '/chatLog.txt';
 	public function __construct()
@@ -75,6 +76,13 @@ class Chat
 
 		$this->server->start();
 	}
+
+	public static function getInstance() {
+	    if (!self::$instance) {
+	        self::$instance = new Chat;
+	    }
+	    return self::$instance;
+	}
 }
 
-new Chat();
+Chat::getInstance();
